@@ -1,0 +1,109 @@
+//en Sass el elemento que tiene que cammbiar segun el dispositivo se lo daamos justo al elemento en cuestion
+.aside{
+    //global
+    width: 300px;
+
+    //mediaQuery
+    @media screen and (orientation: portrait){
+        width: 200px;
+    }
+}
+
+//y él compilaria:
+@media screen and (orientation: portrait){
+    .aside{
+    width: 200px;
+}
+}
+/* //<
+esto es lo mismo 
+'
+'
+'
+'
+>que esto: */
+//SASSS
+@media screen {
+    .aside{
+        @media (orientation:portrait){
+            width: 200px;
+        }
+    }
+}
+
+//-él nos añade los "and"
+@media screen {
+    .aside{
+        @media (orientation:portrait){
+            width: 200px;
+        }
+        @media(min-width:320px)
+    }
+}
+
+//establecemos las variables y así se puede usar en muchas páginas y si quieres cmabiar las propieades las cambias en las variables
+
+$media: screen;
+$tipo: -webkit-min-device-pixel-ratio;
+$valor: 1.2;
+
+@media #{$media} and ($tipo: $valor) {
+    .sidebar{
+        width:500px;
+    }
+}
+
+//se introduce dentro de los mixins, al cololcar el content cuando luego lo llamemos
+@mixin prueba{
+    html {
+        @content;
+    }
+}
+
+//incluye el codigo que le introduzcamos
+
+@include prueba {
+    #logo{
+        color:red;
+    }
+
+}
+//que seria igual a:
+
+html{
+    #logo{
+        color:red;
+    }
+}
+
+
+//variables
+$breakpoint-movil: 320px; //m
+$breakpoint-tablet: 768px; //t
+$breakpoint-desktop: 1366px; //e
+
+//mixin 
+
+@mixin media($media){
+    @if media==m{
+        @media screen and (min-width: $breakpoint-movil){
+            @content;
+        }
+    } @else if $media==t{
+        @media screen and (min-width: $breakpoint-tablet){
+            @content;
+    }@else if $media==e{
+        @media screen and (min-width: $breakpoint-desktop){
+            @content;
+    }
+    
+}
+
+.boton{
+    include media(m)
+    y él me trae este trozo de código 
+    @media screen and (min-width: 320px){
+        
+    }
+
+}

@@ -1,0 +1,86 @@
+//VARIABLES DE BREAKPOINT
+    $breakpoint-small: '320px';
+    $breakpoint-medium: '768px';
+    $breakpoint-large: '1366';
+
+
+    
+@mixin mediaQuery($query){
+    //definir querys
+        $queries:(
+            //-para movil que llegue hasta 320 px
+            movil-peke: '(max-device-width: #{$breakpoint-small}) and (orientation: portrait)',
+            //-para movil que tenga entre 320px y 768
+            movil: '(min-device-width: #{$breakpoint-small}) and (max-device-width: #{$breakpoint-medium}) and (orientation: portrait)',
+            //tablet en vertical
+            tabletv: '(min-device-width: #{$breakpoint-medium}) and (max-device-width: 1024px) and (orientation: portrait)',
+            //para tablet en horizontal
+            tabletv: '(min-device-width: #{$breakpoint-medium}) and (max-device-width: #{$breakpoint-large}) and (orientation: landscape)',
+            //para escritorio
+            desktop: '(min-width: #{$breakpoint-large}) '
+        )
+
+// 
+//Opciones
+
+@if map-has-key($queries, $query){ //busca dentro del objeto queries lo que le psemos en query(movil-peke, movil, tabletv, tableth, desktop)
+    $query-value:map-get($queries, $query);
+    
+    @media #($query-value){
+        
+        @content;
+    }
+
+}
+}
+
+    //utilizar el mixin, se utiliza dentro de el elemento que haya que modificar segun el dispositivo
+p{
+    color:grey // esta propiedad sería general para todos los dispositivos, si no hubiera un general y cada dispositivo tuviera unas propiedades diferentes pues tendríamos 3 @include mediaQuery  cada una para asignar las caracteristicas para los diferentes dispositivos
+
+
+    @include mediaQuery(desktop){
+        color:red;  // y esta propiedad se aplicará solo en el escritorio
+        
+    }
+}
+
+
+
+/* ******************* */
+/* VARIABLES */
+$breakpoint-small: '320px';
+$breakpoint-medium: '768px';
+$breakpoint-large: '1366px';
+
+/* MIXIN */
+@mixin mediaQuery($query) {
+    $queries: (
+        mobil-peke: '(max-device-width: #{$breakpoint-small}) and (orientation: portrait)',
+        mobil: '(min-device-width: #{$breakpoint-small}) and (max-device-width: calc(#{$breakpoint-small} + 100px)) and (orientation: portrait)',
+        ipad: '(min-device-width: #{$breakpoint-medium}) and (max-device-width: calc(#{$breakpoint-medium} + 100px)) and (orientation: portrait)',
+        ipad-horiz: '(min-device-width: #{$breakpoint-medium}) and (orientation: landscape)',
+        escritorio: '(min-width: #{$breakpoint-large})'
+    );
+
+    // Ejecución
+    @if map-has-key($queries, $query) {
+        $query-value: map-get($queries, $query);
+
+        @media #{$query-value} {
+            @content;
+        }
+    } 
+    @else {
+        @warn 'Problemas con' + $query ;
+    }
+}
+
+// Probando el mixin
+
+    @include mediaQuery(escritorio){
+        p{
+            font-size: 3rem;
+        }
+    }
+```

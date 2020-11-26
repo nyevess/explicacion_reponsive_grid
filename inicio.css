@@ -1,0 +1,60 @@
+/* ESTILOS GENERALES FLEXIBLES*/
+html{
+    ....
+}
+.container{
+    .....
+}
+
+
+/* MEDIA QUERYS */
+/* SMARTPHONE */
+/* Este mediaQuery solo se establecerá con pantallas, su orientacion será vertical si lo puseriamos horizontal esto no funcionaría y ademas el mínimo debe ser 320px */
+@media only screen
+and (min-device-width: 320px)
+and (orientation: portrait){
+    body{
+        background-color: red;
+        color: white;
+        font-size: 16px;
+    }
+}
+
+/* TABLET */
+/* ZONA VERTICAL tablet*/
+/* Este mediaQuery solo se establecerá con pantallas, su orientacion será vertical si lo puseriamos horizontal esto no funcionaría y ademas el mínimo debe ser 768px */
+@media only screen
+and (min-device-width: 768px)
+and (orientation: portrait)
+{
+    body{
+        background-color:green;
+        color: white;
+        font-size: 24px;
+    }
+}
+
+/* ZONA HORIZONTAL tablet*/
+/* Este mediaQuery solo se establecerá con pantallas, su orientacion será horizontal  ademas el mínimo debe ser 1024px */
+@media only screen
+and (min-device-width: 1024px)
+and (orientation: landscape)
+{
+    body{
+        background-color: green;
+        color: white;
+        font-size: 24px;
+    }
+}
+
+/* DESKTOP */
+/* le quitamos el device porque este ya no es un dispositivo, es un ordenador */
+@media only screen
+and (min-width: 1200px)
+{
+    body{
+        background-color: orange;
+        color: white;
+        font-size: 36px;
+    }
+}

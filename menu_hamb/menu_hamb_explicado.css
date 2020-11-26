@@ -1,0 +1,72 @@
+html {
+    font-size: 20px;
+    margin   : 0;
+    padding  : 0;
+}
+
+header {
+    display         : flex;
+    justify-content : space-between;
+    padding         : 20px;
+    background-color: rgb(236, 234, 234);
+    height: 10vh;
+    padding: 0 2rem;
+}
+
+ul{
+    list-style-type: none;
+}
+
+nav input {
+    display: none;
+    /* escondemos el input para que no se vea el checkbox y solo se vera el icono del menu hamburguesa, de modo que como el label y el input estan conectados con el id y el for si pulsas label es como si hicieras el checkbox en el inùt */
+}
+
+@media only screen and (min-width: 300px) {
+
+    label {
+        display: block;
+    }
+
+    ul {
+        display        : none;
+        list-style-type: none;
+        position       : absolute;
+        right          : 20vw;
+        top            : 50vw;
+    }
+
+    /* cuando sea un movil, se esconderá el ul y mostrará solo el menu hamburguesa */
+    input:checked~ul {
+        width           : 50vw;
+        height          : 90vh;
+        position        : absolute;
+        z-index         : 5;
+        background-color: grey;
+        right           : 0;
+        top             : 10vh;
+        padding         : 2rem 0 0 0;
+        display         : flex;
+        justify-content : start;
+        flex-direction  : column;
+        align-items     : center;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+
+    /* cuando sea un escritorio el menu hamburguesa le damos display none para que se esconda y le damos al ul display flex para que se muestre el navegador */
+    label {
+        display: none;
+    }
+
+    ul {
+        display: flex;
+        width  : 50vw;
+        justify-content: space-between;
+
+    }
+
+}
+
+/* le decimos que cuando pulsamos el input convierta el ul en un block y se muestra */

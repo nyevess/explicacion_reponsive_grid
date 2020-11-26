@@ -1,0 +1,55 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(75,25,140);
+}
+
+.container > *{
+    border: 1px solid white;
+    color: white;
+    font-size: 2rem;
+    font-family: sans-serif;
+    padding: 1rem;
+    margin: 0;
+}
+
+.container{
+    border: 5px solid yellow;
+    /* ***************** */
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(3, 150px);
+
+    /* MINMAX */
+    /* ****************** */
+    /* tendra 2 columnas, y se hará pequeña hasta llegar a 50 px, ya no se hará mas pequeño, cuadno sea mas grande de 50 px se repartira el estapcio en 3 fr */
+    grid-template-columns: repeat(3, minmax(50px, 1fr));
+
+    /* MIN-CONTENT */
+    /* ***************** */
+    /* con min content el va a averiguar cuando miden los elements que contienen para que no se rompan y el minimo sera lo que necesiten lo s elementos*/
+grid-template-columns: repeat(3, minmax(min-content, 1fr));
+
+
+    /* autoFILL */
+    /* *************** */
+    /* nos genrea columnas automaticas y si sobra espacio lo rellena con columnas vacias */
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+
+/* nos genrea columnas automaticas y si sobra espacio lo rellena con columnas vacias  de la primera medida especificada*/
+
+    grid-template-columns: repeat(auto-fill, minmax(50px, 200px));
+
+
+
+    /* AUTO-FIT*/
+    /* genera las columnas adecuadas al tamaño de los elementos, minimo con 100 px y sino se reparte los espacios con los fr  */
+    
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+
+}
